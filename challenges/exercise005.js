@@ -19,7 +19,7 @@ export const count1sand0s = (str) => {
 
 export const reverseNumber = (n) => {
   if (n === undefined) throw new Error("n is required");
-  let num = n.toString();
+  const num = n.toString();
   return parseInt(num.split('').reverse().join(''));
 };
 
@@ -62,7 +62,7 @@ export const findNeedle = (haystack, searchTerm) => {
 
 export const getWordFrequencies = (str) => {
   if (str === undefined) throw new Error("str is required");
-  let strArr = str.split(" ");
+  const strArr = str.split(" ");
   let strObj = {};
   for (let i = 0; i < strArr.length; i++) {
     let word = strArr[i].replace(/[^\w ]/g, '').toLowerCase();

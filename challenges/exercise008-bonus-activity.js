@@ -2,28 +2,30 @@
 
 export function printColours(colours) {
   if (!colours) throw new Error("colour is required");
-  // Your solution using the spread operator here!
+  const coloursCopy = [...colours];
+  return coloursCopy;
 }
 
 export function shoppingList(list, newItem) {
   if (!list) throw new Error("list is required");
   if (!newItem) throw new Error("newItem is required");
-  // Your solution using the spread operator here!
+  const fullList = [...list, ...newItem];
+  return fullList;
 }
 
 export function highestNumber(numbers) {
   if (!numbers) throw new Error("numbers are required");
-  // Your solution using the spread operator here!
+  return Math.max(...numbers);
 }
 
 export function splitThatString(string) {
   if (!string) throw new Error("string is required");
-  // Your solution using the spread operator here!
+  return [...string];
 }
 
 // Optional Chaining Bonus activity!
 
 export function addressLookUp(user) {
   if (!user) throw new Error("user is required");
-  // Your solution using optional chaining here!
+  return user.address?.postcode;
 }

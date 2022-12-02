@@ -43,17 +43,12 @@ export function reverseWord(word) {
 
 export function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  //for (let i = 0; i < words.length; i++) {
-  words.forEach((word, i) => {
-    words[i] = word.split("").reverse().join("");
-  })
-  return words;
+  return words.map(word => word.split("").reverse().join(""));
 }
 
 export function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   let count = 0;
-  console.log(users.length);
   for (let i = 0; i < users.length; i++) {
     if (users[i].type === "Linux") {
       count++;

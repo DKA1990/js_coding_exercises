@@ -4,6 +4,19 @@
  */
 export const sumDigits = (n) => {
   if (n === undefined) throw new Error("n is required");
+  /*const num = n.toString();
+  let total = 0;
+  for (let i = 0; i < num.length; i++) {
+    total = total + parseInt(num[i]);
+  }
+  return total;*/
+  let total = 0;
+  let num = n;
+  while (num > 0) {
+    total = total + (num % 10);
+    num = Math.trunc(num / 10);
+  }
+  return total;
 };
 
 /**
@@ -14,13 +27,16 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step) => {
+export const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  if (step === undefined)
-    console.log(
-      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-    );
+  let startIncremented = start;
+  let numArr = [];
+  while (startIncremented <= end) {
+    numArr.push(startIncremented);
+    startIncremented += step;
+  }
+  return numArr;
 };
 
 /**
@@ -55,6 +71,16 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  let usersAboveTime = [];
+  users.forEach(user => {
+    const filteredScreentime = user['screenTime'].filter(element => element['date'] === date);
+    if (filteredScreentime.length > 0) {
+      if (Object.values(filteredScreentime[0].usage).reduce((acc, cur) => acc + cur) > 100) {
+        usersAboveTime.push(user['username']);
+      }
+    }
+  });
+  return usersAboveTime;
 };
 
 /**
@@ -69,6 +95,10 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  const hexRed = hexStr.slice(1, 3);
+  const hexGreen = hexStr.slice(3, 5);
+  const hexBlue = hexStr.slice(5);
+  return 'rgb(' + parseInt(hexRed, 16) + ',' + parseInt(hexGreen, 16) + ',' + parseInt(hexBlue, 16) + ')';
 };
 
 /**
@@ -83,4 +113,23 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
+  const winCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+  ];
+  const boardArr = board[0].concat(board[1]).concat(board[2]) ;
+  for (let win of winCombos.values()) {
+    if (win.every(square => boardArr[square] !== null)) {
+      if (boardArr[win[0]] === boardArr[win[1]] && boardArr[win[1]] === boardArr[win[2]]) {
+        return boardArr[win[0]];        
+      }
+    }
+  }
+  return null;
 };
