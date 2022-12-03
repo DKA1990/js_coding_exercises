@@ -27,8 +27,5 @@ export function countSheep(arr) {
 export function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
   // Check first letter is 'M', second letter is number. Safe to assume?
-  if (person.address.postCode[0].toUpperCase() === 'M' && person.address.postCode[1].toUpperCase() === person.address.postCode[1].toLowerCase()) {
-    return true;
-  }
-  return false;
+  return (person.address.postCode[0].toUpperCase() === 'M' && person.address.postCode[1].toUpperCase() === person.address.postCode[1].toLowerCase());
 }

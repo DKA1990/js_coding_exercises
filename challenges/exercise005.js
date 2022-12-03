@@ -49,7 +49,6 @@ export const findNeedle = (haystack, searchTerm) => {
   let found = false;
 // Check for found === true to stop executing further code if found. Change to for loop for ability to break?
   Object.values(haystack).forEach(hay => {
-  //for (let i = 0; i < Object.values(haystack).length; i++) {
     if (found === true) {
       return;
     }

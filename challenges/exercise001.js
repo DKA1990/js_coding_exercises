@@ -2,12 +2,12 @@
 
 export function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
-  let foundSentences = word.search(/[.?!]/g);
+  const foundSentences = word.search(/[.?!]/g);
   if (foundSentences > 0 && foundSentences != word.trim.length -1) {
   // Assume strings don't contain | or trouble!
   // Assume strings follow english grammar eg no double spaces
   // Captures ?!. followed by space followed by a letter or number. $1 preserves replaced character (?!.), adds | after as split removes split character
-    let sentenceArr = word.replace(/([?!.])\s(?=[\w\d])/g, "$1|").split("|");
+    const sentenceArr = word.replace(/([?!.])\s(?=[\w\d])/g, "$1|").split("|");
     let newSentence = '';
     sentenceArr.map(sentence => newSentence = newSentence + sentence[0].toUpperCase() + sentence.substring(1) + ' ');
     return newSentence.trimEnd();

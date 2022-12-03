@@ -7,15 +7,12 @@
 export const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
   if (arr.length > 0) {
-    let filteredArr = arr.filter(element => (element % 3 === 0 || element % 5 === 0));
+    const filteredArr = arr.filter(element => (element % 3 === 0 || element % 5 === 0));
     if (filteredArr.length > 0) {
       return filteredArr.reduce((acc, cur) => acc + cur);
-    } else {
-      return 0;
     }
-  } else {
-    return 0;
   }
+  return 0;
 };
 
 /**
@@ -58,10 +55,8 @@ export const getComplementaryDNA = (str) => {
 export const isItPrime = (n) => {
   if (n === undefined) throw new Error("n is required");
   if (n > 1) {
-    for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {
-      if (n % i === 0) {
-        return false;
-      }
+    for (let i = 2; i <= Math.floor(Math.sqrt(n)); i++) {      
+      return (n % i !== 0);
     }
   } else {
     return false;
