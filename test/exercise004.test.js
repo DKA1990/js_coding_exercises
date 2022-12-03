@@ -28,6 +28,7 @@ describe("findNamesBeginningWith", () => {
     ]);
     expect(findNamesBeginningWith(names, "D")).toEqual(["Dave"]);
     expect(findNamesBeginningWith(names, "F")).toEqual([]);
+    expect(findNamesBeginningWith([], "F")).toEqual([]);
   });
 });
 
@@ -55,6 +56,11 @@ describe("findVerbs", () => {
       "cheesemonger",
     ];
     expect(findVerbs(words)).toEqual(["to eat", "to sneak", "to squeak"]);
+  });
+
+  test("returns an empty array when passed an empty array", () => {
+    const words = [];
+    expect(findVerbs(words)).toEqual([]);
   });
 });
 

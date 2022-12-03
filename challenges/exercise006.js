@@ -47,7 +47,7 @@ export const getComplementaryDNA = (str) => {
       return dnaMap[x];
     });
   }
-  return [];
+  return false;
 };
 
 /**

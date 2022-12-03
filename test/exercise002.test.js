@@ -103,6 +103,11 @@ describe("countSheep", () => {
     ];
     expect(countSheep(arr)).toBe(5);
   });
+
+  test("returns 0 if passed an empty array", () => {
+    const arr = [];
+    expect(countSheep(arr)).toBe(0);
+  });
 });
 
 describe("hasMPostCode", () => {

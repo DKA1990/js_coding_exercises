@@ -41,6 +41,10 @@ describe("getComplementaryDNA", () => {
         expect(getComplementaryDNA("ACGT")).toBe("TGCA");
         expect(getComplementaryDNA("ACTGATGGCA")).toBe("TGACTACCGT");
     });
+
+    test("Returns false when passed invalid DNA string", () => {
+        expect(getComplementaryDNA("FDTJHRTFH")).toBe(false);
+    });
 });
 
 describe("isItPrime", () => {
@@ -71,7 +75,14 @@ describe("createMatrix", () => {
 
 describe("areWeCovered", () => {
     test("Function is passed an array of objects in format [{name: 'Dan', rota: ['Monday', ...]}, {name: ..., rota: ...}, ...]. Returns true if >= 3 people are on the rota for any given day 'day', passed as the second argument.", () => {
-        expect(areWeCovered([{ name: "Sally", rota: ["Monday", "Tuesday", "Friday"] }, { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] }, { name: "Boris", rota: ["Saturday", "Monday", "Tuesday", "Wednesday"] }, { name: "Dan", rota: ["Wednesday"] }], "Wednesday")).toBe(true);
-        expect(areWeCovered([{ name: "Sally", rota: ["Monday", "Tuesday", "Friday"] }, { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Monday"] }, { name: "Boris", rota: ["Saturday", "Monday", "Tuesday", "Wednesday"] }, { name: "Dan", rota: ["Wednesday"] }], "Wednesday")).toBe(false);
+        const arr = [
+            { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+            { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+            { name: "Boris", rota: ["Saturday", "Monday", "Tuesday", "Wednesday"] }, 
+            { name: "Dan", rota: ["Wednesday"] }
+        ];
+        expect(areWeCovered(arr, "Wednesday")).toBe(true);
+        expect(areWeCovered(arr, "Tuesday")).toBe(true);
+        expect(areWeCovered(arr, "Friday")).toBe(false);
     });
 });

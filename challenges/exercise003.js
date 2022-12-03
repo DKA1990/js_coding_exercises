@@ -10,15 +10,14 @@ export function getSquares(nums) {
 
 export function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
+  if (words === []) throw new Error("words cannot be empty");
   let word = words[0].toLowerCase();
   if (words.length > 1) {
     for (let i = 1; i < words.length; i++) {
       word = word + words[i][0].toUpperCase() + words[i].substring(1).toLowerCase();
     }
-    return word;
-  } else {
-    return word;
   }
+  return word;
 }
 
 export function getTotalSubjects(people) {

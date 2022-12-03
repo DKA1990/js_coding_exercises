@@ -21,6 +21,14 @@ describe("capitalize", () => {
   test("does nothing if the string is already capitalized", () => {
     expect(capitalize("Hello")).toBe("Hello");
   });
+
+  test("capitalises all sentences within a string", () => {
+    expect(capitalize("Hello. my name is Dan! nice to meet you")).toBe("Hello. My name is Dan! Nice to meet you");
+  });
+
+  test("deals with decimal points in numbers correctly", () => {
+    expect(capitalize("Does this number: 90.8374 break it? hopefully not!")).toBe("Does this number: 90.8374 break it? Hopefully not!");
+  })
 });
 
 describe("generateInitials", () => {

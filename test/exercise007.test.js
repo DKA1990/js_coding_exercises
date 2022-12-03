@@ -9,6 +9,7 @@ import {
 describe("sumDigits", () => {
     test("When passed a num, function returns the sum of each individual digit eg. 123 returns 6", () => {
         expect(sumDigits(476)).toBe(17);
+        expect(sumDigits(4894)).toBe(25);
     });
 });
 

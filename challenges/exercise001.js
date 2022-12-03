@@ -2,8 +2,17 @@
 
 export function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
-  word = word[0].toUpperCase() + word.substring(1);
-  return word;
+  let foundSentences = word.search(/[.?!]/g);
+  if (foundSentences > 0 && foundSentences != word.trim.length -1) {
+  // Assume strings don't contain | or trouble!
+  // Assume strings follow english grammar eg no double spaces
+  // Captures ?!. followed by space followed by a letter or number. $1 preserves replaced character (?!.), adds | after as split removes split character
+    let sentenceArr = word.replace(/([?!.])\s(?=[\w\d])/g, "$1|").split("|");
+    let newSentence = '';
+    sentenceArr.map(sentence => newSentence = newSentence + sentence[0].toUpperCase() + sentence.substring(1) + ' ');
+    return newSentence.trimEnd();
+  }
+  return word[0].toUpperCase() + word.substring(1);
 }
 
 export function generateInitials(firstName, lastName) {
@@ -15,14 +24,12 @@ export function generateInitials(firstName, lastName) {
 export function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // Assume original price is always > 0? Truncate instead of round for currency
   return Math.floor(originalPrice * (1 + (vatRate/100)) * 100) / 100;
 }
 
 export function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Truncate for currency?
   return Math.floor(originalPrice * (1 - (reduction/100)) * 100) / 100;
 }
 
